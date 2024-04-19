@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>the NULL Club</title>
+<link
+rel="icon"
+type="image/png"
+href="https://cdn.glitch.global/c3769579-3b02-4c12-972e-afe3dfff554a/OrdCoin.6c499569.gif?v=1713140562178"
+/>
+<link href="https://fonts.googleapis.com/css?family=Rubik Pixels" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; 
+  }
+  .loading-text {
+    color: white;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'YourFont', sans-serif;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="green"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 22c-5.514 0-10-4.486-10-10s4.486-10 10-10 10 4.486 10 10-4.486 10-10 10z"/></svg>'), auto;
+  }
+   
+  
+  .header {
+    background-color: green; 
+    height: 7vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    left: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2px;
+  }
+  .logo {
+    width: 80px; 
+    height: auto;
+  }
+  .title-container {
+    display: flex;
+    align-items: center;
+  }
+  .title {
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'YourFont', sans-serif;
+    margin: 0; 
+  }
+  .subtitle {
+    font-size: 14px;
+    color: #000000;
+    }
+  .gif-left,
+  .gif-right {
+    width: 30px;
+    height: auto;
+  }
+  .connect-btn {
+    background-color: white;
+    color: green;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap; 
+    font-weight: bold;
+    font-family: 'YourFont', sans-serif;
+    font-size: 20px;
+    margin-right: 12px; 
+    animation: glow-animation1 1.5s ease-in-out infinite alternate;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="green"><circle cx="12" cy="12" r="10" /></svg>'), auto;
+  }
+  .border-green {
+    position: fixed;
+    border-style: solid;
+    border-color: green;
+    border-width: 0 10px 10px 10px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999; 
+  }
+  .typewriter-container {
+    margin-top: 10vh;
+    z-index: 1001;
+  }
+  .video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+    object-fit: cover;
+  }
+  .typewriter-text {
+    overflow: hidden;
+    color: green;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .glow {
+    font-weight: bold;
+    color: white;
+    animation: glow-animation 1.5s ease-in-out infinite alternate;
+  }
+  @keyframes glow-animation {
+    0% {
+      text-shadow: 0 0 20px white, 0 0 30px white, 0 0 40px white;
+    }
+    50% {
+      text-shadow: 0 0 35px white, 0 0 45px white, 0 0 35px white;
+    }
+    100% {
+      text-shadow: 0 0 30px white, 0 0 20px white, 0 0 30px white;
+    }
+  }
+  @keyframes glow-animation1 {
+    0% {
+      text-shadow: 0 0 10px green, 0 0 20px green, 0 0 30px green;
+    }
+    50% {
+      text-shadow: 0 0 15px green, 0 0 25px green, 0 0 35px green;
+    }
+    100% {
+      text-shadow: 0 0 10px green, 0 0 20px green, 0 0 30px green;
+    }
+  }
+  .cursor {
+    border-right: 10px solid green;
+    animation: cursor-blink 0.5s infinite;
+  }
+  @keyframes cursor-blink {
+    0% { border-color: white; }
+    50% { border-color: transparent; }
+  }
+  .controls-text {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .clickable-word {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="green"><circle cx="12" cy="12" r="10" /></svg>'), auto;
+    text-decoration: underline;
+    position: relative;
+    z-index: 1002;
+    position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: 1001; font-size: 25px;
+  }
+  
+    .top-right-gif {
+      position: fixed;
+/*       top: 30vh; */
+      bottom: -10px;
+      right: -10px;
+      width: 500px;
+      z-index: 1000;
+    }
+  .blue-text {
+    color: blue;
+  }
+  
+  
+  @media (max-width: 820px) {
+    .logo {
+      width: 50px; 
+    }
+    .loading-text {
+      font-size: 12px;
+    }
+    .title {
+      font-size: 25px;
+    }
+    .gif-left,
+    .gif-right {
+      width: 10px;
+      height: auto;
+    }
+    .connect-btn {
+      font-size: 6px;
+      padding: 6px 10px;
+      border-radius: 3px;
+    }
+    .typewriter-text {
+      font-size: 8px;
+    }
+    .controls-text {
+      font-size: 5px;
+    }
+    .clickable-word {
+      font-size: 6px;
+    }
+    .top-right-gif {
+      width: 250px;
+    }
+    .subtitle {
+    font-size: 7px;
+    }
+  }
+  
+
+</style>
+</head>
+<body>
+  <div class="loading-screen">
+    <img src="https://cdn.glitch.global/c3769579-3b02-4c12-972e-afe3dfff554a/ZerosSkull.53601af8.gif?v=1713140509124" alt="Loading GIF">
+    <div class="loading-text">Loading...</div>
+  </div>
+  
+  
+  <audio id="typingSound">
+    <source src="https://cdn.glitch.global/c3769579-3b02-4c12-972e-afe3dfff554a/typing-6458.mp3?v=1713139383668" type="audio/mpeg">
+  </audio>
+  
+  
+  <video class="video-bg" autoplay loop muted>
+    <source src="https://cdn.glitch.global/d9b990f0-f28d-49fd-b14e-85a0df5ed795/null-bg1.mp4?v=1713205041626" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  
+  
+  <div class="header">
+    <a href="/index.html">
+      <img src="https://cdn.glitch.global/d9b990f0-f28d-49fd-b14e-85a0df5ed795/oxdeadcoin.gif?v=1713466460190" alt="Logo" class="logo">
+    </a>
+    
+    
+    <div class="title-container">
+      
+      <div class="title glow"> the NULL </div>
+      <br>
+      <div class="subtitle">0x000000000<br>erc-20<br>by 0xdead69</div>
+      <br>
+      
+    </div>
+    
+    <button id="launchPad" class="connect-btn">Generate</button>
+    <button id="buyBtn" class="connect-btn">BUY NOW</button>
+  </div> 
+  
+  <div class="border-green"></div> 
+  
+  <br>
+  <br>
+  
+    <img src="https://cdn.glitch.global/d9b990f0-f28d-49fd-b14e-85a0df5ed795/nullman1.gif?v=1713199469576" alt="Top Right GIF" class="top-right-gif">
+
+  
+  <div class="typewriter-container">
+    <div class="typewriter-text glow">
+      <span id="line1"> . &gt; </span><span class="cursor"></span>
+    </div>
+    <br>
+    <br>
+    <div class="typewriter-text glow">
+      <span id="line2"> . &gt; </span><span class="cursor"></span>
+    </div>
+    <br>
+    <br>
+    <div class="typewriter-text glow">
+      <span id="line3"> . &gt; </span><span class="cursor"></span>
+    </div>
+    <br>
+    <br>
+    <div class="typewriter-text glow">
+      <span id="line4"> . &gt; </span><span class="cursor"></span>
+    </div>
+    <br>
+    <br>
+    <div class="typewriter-text glow">
+      <span id="line5"> . &gt; </span><span class="cursor"></span>
+
+    </div>
+    <br>
+    <br>
+    <div class="typewriter-text glow">
+      <span id="line6"> . &gt; </span><span class="cursor"></span>
+    </div>
+    <br>
+    <br>
+    <div class="typewriter-text glow">
+      <span id="line7"> . &gt; </span><span class="cursor"></span>
+    </div>
+    <br>
+    <br>
+    <div class="typewriter-text glow">
+      <span id="line8"> . &gt; </span><span class="cursor"></span>
+    </div>
+    <br>
+    <br>
+    <div class="typewriter-text glow">
+      <span id="line9"> . &gt; </span><span class="cursor"></span>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="typewriter-text glow clickable-word" >
+      <span id="line10">
+        <span onclick="openLink('https://basescan.org/token/0x000000000dba4277DD9461dD02ED20E88D8CdE4D#code')">contract</span>
+        <span onclick="openLink('https://t.me/thenullclub')">telegram</span>
+        <span onclick="openLink('https://x.com/thenullclub')">twitter</span>
+        <span onclick="openLink('https://medium.com/@thenullclub/the-null-token-launch-93029fe15ceb')">medium</span>
+      </span>
+      <span class="cursor"></span>
+    </div>
+    
+  </div>
+  
+  
+  
+  <div class="controls-text" id="controlsText">Click to unmute</div>
+
+<script>
+  window.addEventListener('load', function () {
+      const loadingScreen = document.querySelector('.loading-screen');
+      loadingScreen.style.display = 'none'; 
+    });
+  
+  const lines = [
+    "An uncommon <utility>/",
+    "For the holders of the NULLs, take as much as you have given, though we are just a day old/",
+    "NULLers shalt not be commoners with a random boring secp256k1 curved hex address/",
+    "For what it's worth, hold the NULLs in millions, stake the NULLs in millions, generate your own address worth maybe Trillions/",
+    "We started from NULL, together, still in our infancy/",
+  ];
+
+  let currentLine = 0;
+  let currentChar = 0;
+  let interval;
+  const typingSound = document.getElementById('typingSound');
+
+  function typeWriter() {
+  if (currentChar < lines[currentLine].length) {
+    const currentLineElement = document.getElementById(`line${currentLine + 1}`);
+    const currentCharElement = document.createElement('span');
+    const currentCharValue = lines[currentLine].charAt(currentChar);
+
+    if (currentCharValue === '<' && lines[currentLine].charAt(currentChar + 1) === 's') {
+      const closingTagIndex = lines[currentLine].indexOf('>', currentChar);
+      currentChar = closingTagIndex + 1;
+    } else {
+      currentCharElement.textContent = currentCharValue;
+      currentLineElement.appendChild(currentCharElement);
+
+      if (currentLine === 3 && currentChar >= 19 && currentChar <= 28) {
+        currentCharElement.classList.add('blue-text');
+      }
+      
+      if (currentLine === 4 && currentChar >= 19 && currentChar <= 29) {
+        currentCharElement.classList.add('blue-text');
+      }
+
+      currentChar++;
+      typingSound.play();
+    }
+  } else {
+    currentLine++;
+    currentChar = 0;
+    if (currentLine >= lines.length) {
+      clearInterval(interval);
+      typingSound.pause();
+    }
+  }
+}
+  interval = setInterval(typeWriter, 100);
+  
+  function openLink(url) {
+    window.open(url, '_blank');
+  }
+  
+  document.getElementById('buyBtn').addEventListener('click', function() {
+    window.open('https://dexscreener.com/base/0x000000000dba4277DD9461dD02ED20E88D8CdE4D', '_blank');
+  });
+  
+  document.getElementById('launchPad').addEventListener('click', function() {
+    window.open('/generate.html', '_blank');
+  });
+
+  
+</script>
+
+</body>
+</html>
