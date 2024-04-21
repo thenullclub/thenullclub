@@ -243,7 +243,7 @@ href="https://cdn.glitch.global/c3769579-3b02-4c12-972e-afe3dfff554a/OrdCoin.6c4
   
   
   <div class="header">
-    <a href="/index">
+    <a href="/index.html">
       <img src="https://cdn.glitch.global/d9b990f0-f28d-49fd-b14e-85a0df5ed795/oxdeadcoin.gif?v=1713466460190" alt="Logo" class="logo">
     </a>
     
@@ -258,6 +258,7 @@ href="https://cdn.glitch.global/c3769579-3b02-4c12-972e-afe3dfff554a/OrdCoin.6c4
     </div>
     
     <button id="launchPad" class="connect-btn">Generate</button>
+    <button id="Mint" class="connect-btn">MINT</button>
     <button id="buyBtn" class="connect-btn">BUY NOW</button>
   </div> 
   
@@ -296,6 +297,26 @@ href="https://cdn.glitch.global/c3769579-3b02-4c12-972e-afe3dfff554a/OrdCoin.6c4
     </div>
     <br>
     <br>
+    <div class="typewriter-text glow">
+      <span id="line6"> . &gt; </span><span class="cursor"></span>
+    </div>
+    <br>
+    <br>
+    <div class="typewriter-text glow">
+      <span id="line7"> . &gt; </span><span class="cursor"></span>
+    </div>
+    <br>
+    <br>
+    <div class="typewriter-text glow">
+      <span id="line8"> . &gt; </span><span class="cursor"></span>
+    </div>
+    <br>
+    <br>
+    <div class="typewriter-text glow">
+      <span id="line9"> . &gt; </span><span class="cursor"></span>
+    </div>
+    <br>
+    <br>
     <br>
     <br>
     <br>
@@ -322,7 +343,7 @@ href="https://cdn.glitch.global/c3769579-3b02-4c12-972e-afe3dfff554a/OrdCoin.6c4
     });
   
   const lines = [
-    "An uncommon <utility>/",
+    "An uncommon <utility> coming on 23rd April/",
     "For the holders of the NULLs, take as much as you have given, though we are just a day old/",
     "NULLers shalt not be commoners with a random boring secp256k1 curved hex address/",
     "For what it's worth, hold the NULLs in millions, stake the NULLs in millions, generate your own address worth maybe Trillions/",
@@ -347,11 +368,11 @@ href="https://cdn.glitch.global/c3769579-3b02-4c12-972e-afe3dfff554a/OrdCoin.6c4
       currentCharElement.textContent = currentCharValue;
       currentLineElement.appendChild(currentCharElement);
 
-      if (currentLine === 3 && currentChar >= 21 && currentChar <= 34) {
+      if (currentLine === 3 && currentChar >= 19 && currentChar <= 28) {
         currentCharElement.classList.add('blue-text');
       }
       
-      if (currentLine === 4 && currentChar >= 22 && currentChar <= 29) {
+      if (currentLine === 4 && currentChar >= 19 && currentChar <= 29) {
         currentCharElement.classList.add('blue-text');
       }
 
@@ -377,8 +398,13 @@ href="https://cdn.glitch.global/c3769579-3b02-4c12-972e-afe3dfff554a/OrdCoin.6c4
     window.open('https://dexscreener.com/base/0x000000000dba4277DD9461dD02ED20E88D8CdE4D', '_blank');
   });
   
+  document.getElementById('Mint').addEventListener('click', function() {
+    window.open('/mint', '_blank');
+  });
+  
+  
   document.getElementById('launchPad').addEventListener('click', function() {
-    window.open('/generate', '_blank');
+    window.open('/generate.html', '_blank');
   });
 
   
