@@ -258,6 +258,7 @@ href="https://cdn.glitch.global/c3769579-3b02-4c12-972e-afe3dfff554a/OrdCoin.6c4
     </div>
     
     <button id="launchPad" class="connect-btn">Generate</button>
+    <button id="Mint" class="connect-btn">MINT</button>
     <button id="buyBtn" class="connect-btn">BUY NOW</button>
   </div> 
   
@@ -350,7 +351,7 @@ href="https://cdn.glitch.global/c3769579-3b02-4c12-972e-afe3dfff554a/OrdCoin.6c4
     "the dev is 0xdead6900, the ticker is NULLified 0x000000000..... Alpha and Art, hand in hand/",
     "Fairlaunch, 95% supply added to LP and burned >< Ownership renounced/",
     "2.5% to KOLs and 2.5% for future DEX listings/",
-    "We will evolve together, from NULL/",
+    "We will evolve together, from NULLs/",
   ];
 
   let currentLine = 0;
@@ -400,6 +401,11 @@ href="https://cdn.glitch.global/c3769579-3b02-4c12-972e-afe3dfff554a/OrdCoin.6c4
   document.getElementById('buyBtn').addEventListener('click', function() {
     window.open('https://dexscreener.com/base/0x000000000dba4277DD9461dD02ED20E88D8CdE4D', '_blank');
   });
+  
+  document.getElementById('Mint').addEventListener('click', function() {
+    window.open('/mint', '_blank');
+  });
+  
   
   document.getElementById('launchPad').addEventListener('click', function() {
     window.open('/generate', '_blank');
