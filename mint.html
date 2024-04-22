@@ -650,7 +650,7 @@ href="https://cdn.glitch.global/c3769579-3b02-4c12-972e-afe3dfff554a/OrdCoin.6c4
               
               if (isApproved==0) {
                   errorText.innerHTML = "Approving NULLs";
-                  await nullsContract.methods.approve(nftAddress, 750000000000000).send({ from: account });
+                  await nullsContract.methods.approve(nftAddress, 250000000000000).send({ from: account });
                   try { 
                         errorText.innerHTML = "NULLs approved. Minting now";
                         const transaction = await nftContract.methods.mint(amount).send({
