@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>the NULL Club</title>
+<title>the NULLers MINT</title>
 <link
 rel="icon"
 type="image/png"
@@ -221,6 +221,124 @@ href="https://cdn.glitch.global/c3769579-3b02-4c12-972e-afe3dfff554a/OrdCoin.6c4
     }
   }
   
+    .btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, 100%);
+      width: 150px;
+      height: 100px;
+      background-color: rgba(0, 0, 0, .8);
+      box-shadow: 0 4px 4px rgba(0, 0, 0, .3);
+      border-radius: 10%;
+      line-height: 100px;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      font-family: 'YourFont', sans-serif;
+      font-weight: bold; 
+      text-shadow: 0px 0px 10px gold;
+      box-shadow: 0px 0px 10px gold;
+      z-index: 1005;
+      text-transform: uppercase;
+      letter-spacing: 0.3rem;
+      cursor: pointer;
+  }
+    .btn:hover {
+        background-color: rgba(0, 0, 8, 0.3);
+    }
+    .btn.is-clicked {
+      background: linear-gradient(to bottom, gray 0%, dimgray 100%);
+    }
+    .btn.is-clicked:before {
+      animation: blastOut 1s;
+    }   
+
+    .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: black;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 1006;
+        background: url('https://cdn.glitch.global/d9b990f0-f28d-49fd-b14e-85a0df5ed795/bgbg-mm.png?v=1713726590276') center; 
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px green;
+    }
+
+
+    .widget-container {
+      text-align: center;
+      margin-top: 20px;
+
+    }
+    .widget-line {
+        color: green;
+        font-size: 15px;
+        transition: color 0.4s;
+        font-family: 'YourFont', sans-serif;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+
+      }
+      @media (max-width: 1200px) {
+        .text-mint {
+          font-size: 15px;
+        }
+      }
+      @media (max-width: 480px) {
+        .text-mint {
+          font-size: 10px;
+        }
+      }  
+
+    .widget-line:last-child {
+      margin-bottom: 0;
+    }
+    .widget-btn {
+        display: inline-block;
+        width: auto;
+        padding: 10px 20px;
+        background-color: transparent;
+        border: 2px solid green;
+        color: red;
+        font-size: 1.2rem;
+        text-align: center;
+        cursor: pointer;
+        margin: 0 10px;
+    }
+
+    .widget-btn:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .widget-btn-container {
+        text-align: center; /* Center-align the contents */
+    }
+
+
+
+    .loading {
+        display: none;
+        vertical-align: middle;
+        border: 4px solid red;
+        border-top: 4px solid green;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 2s linear infinite;
+        margin-top: 0; 
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+  
 
 </style>
 </head>
@@ -320,6 +438,49 @@ href="https://cdn.glitch.global/c3769579-3b02-4c12-972e-afe3dfff554a/OrdCoin.6c4
     <br>
     <br>
     <br>
+    
+    
+    <button id="btn" class="btn" onclick="showPopupMint()" style="bottom: 25%;">Connect</button> 
+    <div class="popup" id="popupMint">     
+        <div class="widget-container">
+          <img src="https://cdn.glitch.global/d9b990f0-f28d-49fd-b14e-85a0df5ed795/oxdeadcoin.gif?v=1713466460190" alt="Logo" class="logo">
+          <br>
+          <div id="Title" class="title">the NULLers mint</div>
+          <br>
+          <div id="address" class="widget-line"></div>
+          <br>
+          <div id="balanceOf" class="widget-line"></div>
+          <br>
+          <div id="remainingSupply" class="widget-line"></div>
+          <br>
+          <div id="sale-active" class="widget-line"></div>
+          <br>
+            <div class="widget-line">
+                <button class="widget-btn" onclick="decreaseCount()">-</button>
+                <span id="mintCount">1</span>
+                <button class="widget-btn" onclick="increaseCount()">+</button>
+            </div>
+          <br>
+          <div id="priceTotal" class="widget-line"></div>
+          <br>
+            <div class="widget-line">
+                <button id="mint-button" class="widget-btn">Mint</button>
+            </div>
+          <br>
+            <div class="widget-line" id="transactionText"></div>
+            <div class="loading" id="loading"></div>
+          <br>
+          <br>
+          <div id="error-section">
+              <div id="errorText" class="widget-line"></div>
+          </div>
+          <br>
+            <button onclick="closePopupMint()" class="widget-btn">Close</button>
+          <br>
+        </div>
+    </div>
+    
+    
     <div class="typewriter-text glow clickable-word" >
       <span id="line10">
         <span onclick="openLink('https://basescan.org/token/0x000000000dba4277DD9461dD02ED20E88D8CdE4D#code')">contract</span>
@@ -336,6 +497,10 @@ href="https://cdn.glitch.global/c3769579-3b02-4c12-972e-afe3dfff554a/OrdCoin.6c4
   
   <div class="controls-text" id="controlsText">Click to unmute</div>
 
+  
+<!-- <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.4-rc.1/web3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.6.0/ethers.umd.min.js"></script>
 <script>
   window.addEventListener('load', function () {
       const loadingScreen = document.querySelector('.loading-screen');
@@ -343,15 +508,15 @@ href="https://cdn.glitch.global/c3769579-3b02-4c12-972e-afe3dfff554a/OrdCoin.6c4
     });
   
   const lines = [
-    "the official pfp collection of the NULLs community. Minting on 22nd April 13:00 EST / 18:00 CET/",
-    "Not just pfps, but also would serve an important role in the NULLs ecosystem going forward/",
-    "Total supply : 1000 | Price : 250,000 NULLs tokens for 1 mint| Per Address limit : 3/",
+    "the official pfp collection of the NULLs community/",
+    "these are not just pfps, but also would serve an important role in the NULLs ecosystem going forward/",
+    "Total supply : 2500 | Price : 250,000 NULLs tokens for 1 mint| Per Address limit : 3/",
     "deployer address : 0xdead6900aa05ED6360F68A49Ec0dAD683D1AA1f4/",
     "contract address : to be deployed/",
     "step 1 : approve the contract to access your NULLs tokens | This will enable the payment for mint in NULLs | The price to mint is a constant on the contract/",
     "step 2 : mint the NULLs nft, upto 3 per address @ 250,000 NULLs per mint/",
     "50% of the NULLs earned will be burned | 50% goes towards marketing and scaling of the ecosystem/",
-    "We will evolve more together, from NULLs. Page will be updated with Mint button soon/",
+    "We will evolve more together, from NULLs/",
   ];
 
   let currentLine = 0;
@@ -406,6 +571,188 @@ href="https://cdn.glitch.global/c3769579-3b02-4c12-972e-afe3dfff554a/OrdCoin.6c4
     window.open('/generate', '_blank');
   });
 
+  
+      const mintButton = document.querySelector("#mint-button");
+        
+      const errorSection = document.querySelector("#error-section");
+      const supply = document.querySelector("#remainingSupply");
+      const saleActive = document.querySelector("#sale-active");
+      
+      const connectButton = document.querySelector("#btn");
+      const loading = document.querySelector("#loading");
+      const balance = document.querySelector("#balanceOf");
+            
+      
+      const errorText = document.querySelector("#errorText");
+  
+      const nullsAddress = '';
+      const nullsAbi = ;
+  
+      const nftAddress = '';
+      const nftAbi = ;
+
+
+      
+    
+
+      const connectMetaMask = async () => {
+        if (typeof window.ethereum !== "undefined") {
+          try {
+            await window.ethereum.request({ method: "eth_requestAccounts" });
+            console.log("Wallet connected");
+            
+                const baseNetworkParams = {
+                    chainId: '0x2105',
+                    chainName: 'Base Mainnet',
+                    rpcUrls: ['https://mainnet.base.org'],
+                    blockExplorerUrls: ['https://explorer.base.org']
+                };
+    
+                const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+                if (chainId !== baseNetworkParams.chainId) {
+                    try {
+                        await window.ethereum.request({
+                            method: 'wallet_switchEthereumChain',
+                            params: [{ chainId: baseNetworkParams.chainId }],
+                        });
+                    } catch (switchError) {
+                        if (switchError.code === 4902) {
+                            try {
+                                
+                                await window.ethereum.request({
+                                    method: 'wallet_addEthereumChain',
+                                    params: [baseNetworkParams],
+                                });
+                            } catch (addError) {
+                                console.error('Failed to add the Base network:', addError);
+                                return;
+                            }
+                        } else {
+                            console.error('Failed to switch to the Base network:', switchError);
+                            return;
+                        }
+                    }
+                }
+
+            const web3 = new Web3(window.ethereum);
+            
+            const nullsContract = new web3.eth.Contract(nullsAbi, nullsAddress);
+            const nftContract = new web3.eth.Contract(nftAbi, nftAddress);
+
+            let totalSupply = await nftContract.methods.totalSupply().call()                                                  
+            let maxSupply = await nftContract.methods.MAX_SUPPLY().call()
+
+
+            const mintNFT = async (amount) => {         
+            
+            errorText.innerHTML = "Checking if NULLs approved";
+            const isApproved = await nullsContract.methods.allowance(connectedAddress, nftAddress).call();
+              
+              if (isApproved==0) {
+                  errorText.innerHTML = "Approving NULLs";
+                  await nullsContract.methods.approve(nftAddress, 750000000000000).send({ from: account });
+                  try { 
+                        errorText.innerHTML = "NULLs approved. Minting now";
+                        const transaction = await nftContract.methods.mint(amount).send({
+                          from: account
+                        });
+                        console.log("Mint transaction:", transaction);
+                        errorText.innerHTML = transaction;
+                        errorText.innerHTML = "Mint successful";
+                        loading.style.display = "none";
+                      } catch (error) {
+                        console.error("Error minting NFT:", error);
+                        errorText.innerHTML = "Transaction rejected";
+                        loading.style.display = "none";
+                      }
+                } else {
+                    try {          
+                        errorText.innerHTML = "NULLs approved. Minting now";
+                        const transaction = await nftContract.methods.mint(amount).send({
+                          from: account
+                        });
+                        console.log("Mint transaction:", transaction);
+                        errorText.innerHTML = transaction;
+                        errorText.innerHTML = "Mint successful";
+                        loading.style.display = "none";
+                      } catch (error) {
+                        console.error("Error minting NFT:", error);
+                        errorText.innerHTML = "Transaction rejected";
+                        loading.style.display = "none";
+                      }
+              }                          
+          };
+            
+            const accounts = await web3.eth.getAccounts();
+            const account = accounts[0];
+            console.log("account connected", accounts[0]);
+            const connectedAddress = accounts[0];          
+            
+            let balance_address = await nullsContract.methods.balanceOf(connectedAddress).call();
+
+            address.innerHTML = `Account connected: ${connectedAddress}`;
+            let difference = maxSupply - totalSupply;
+            supply.innerHTML = `Supply: ${difference} / ${maxSupply}`;
+            let finalBalance = balance_address/1000000000;
+            balance.innerHTML = `Available NULLs: ${finalBalance}`;
+
+
+          mintButton.addEventListener("click", () => {
+              loading.style.display = "inline-block";
+              const amount = document.getElementById('mintCount').innerText;
+              mintNFT(amount);
+              });
+            } 
+          catch (error) {
+              connectButton.style.display = "none";
+              errorSection.style.display = "block";
+              loading.style.display = "none";
+              errorText.innerHTML = `Mint not open`;
+              console.error("Error connecting to MetaMask:", error);
+            }
+          } else {
+            connectButton.style.display = "none";
+            errorSection.style.display = "block";
+            loading.style.display = "none";
+            errorText.innerHTML = `Error! Not connected to mainnet!`;
+            console.error("MetaMask not found");
+          }
+        }; 
+  
+        function updatePriceTotal() {   
+            var mintCount = parseInt(document.getElementById("mintCount").innerText);
+            var totalPrice = mintCount * 250000;
+            document.getElementById("priceTotal").innerText = "Total Price: " + totalPrice.toFixed(0) + " NULLs";
+        }
+
+        let mintCount = 1;
+        function increaseCount() {
+            if (mintCount < 3) {
+                mintCount++;
+                document.getElementById('mintCount').innerText = mintCount;
+            }
+          updatePriceTotal();
+        }
+
+        function decreaseCount() {
+            if (mintCount > 1) {
+                mintCount--;
+                document.getElementById('mintCount').innerText = mintCount;
+            }
+          updatePriceTotal();
+        }
+
+        function showPopupMint() {
+            document.getElementById('popupMint').style.display = 'block';
+            connectMetaMask();           
+            connectButton.style.display = "none";
+            updatePriceTotal();
+        }
+
+        function closePopupMint() {
+            document.getElementById('popupMint').style.display = 'none';
+            connectButton.style.display = "block";
+        }
   
 </script>
 
